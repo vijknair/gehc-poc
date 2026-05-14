@@ -30,6 +30,7 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 | `cards (care-areas)` | EXISTING variant | S5 — Key Care Areas | `/en-gb/...venue-fit` |
 | `carousel (product-media)` | Block Collection variant | S6 — Clinical Images | `/en-gb/...venue-fit` |
 | `cards (feature-cards)` | EXISTING variant | S8 — Feature Cards | `/en-gb/...venue-fit` |
+| `cards (products)` | EXISTING variant | S8 — Related Products | `/en-gb/...venue-fit` |
 | `contact-form` | NEW (custom) | S10 — Contact Form | `/en-gb/...venue-fit` |
 
 > `/en-gb/...venue-fit` = `/en-gb/products/ultrasound/point-of-care-ultrasound/venue-fit`
@@ -439,18 +440,27 @@ Heading + body paragraph per card maps directly to `cards`. The 3-up grid layout
 **Dev work required:**
 Add `.cards.care-areas` CSS rules to `blocks/cards/cards.css` for 3-up grid and eyebrow/subtitle styling.
 
+**Authoring pattern — cards from links with optional overrides:**
+Authors provide a link per row. The block JS fetches title, description, and thumbnail from `/query-index.json` for each linked page. Any cell an author populates takes precedence over the fetched metadata — empty cells fall back to the index automatically.
+
+| Link | Image | Heading | Description |
+|---|---|---|---|
+| `/en-gb/.../regional-anesthesia` | | | | ← fully auto from index |
+| `/en-gb/.../musculoskeletal` | | Custom MSK Title | Custom one-liner | ← partial override |
+| `/en-gb/.../nicu-picu` | `[custom-thumb.jpg]` | | | ← image only override |
+
 **Author content model:**
-Block header row uses variant name `Cards (care-areas)`. Intro row + content rows:
+Block header row uses variant name `Cards (care-areas)`. First row = eyebrow + subtitle. Each subsequent row = one card (link required; image, heading, description optional overrides):
 
 ```
-+--------------------------------------------------+
-| Cards (care-areas)                               |
-+-----+--------------------------------------------+
-| KEY CARE AREAS | Discover the point of care ultrasound family |
-| Regional Anesthesia | From improved nerve block efficacy... |
-| Musculoskeletal (MSK) | Venue Fit is made for practitioners... |
-| NICU/PICU | Venue Fit enables confident diagnostic scans... |
-+-----+--------------------------------------------+
++------------------------------------------------------------------+
+| Cards (care-areas)                                               |
++------------------------------+-----------------------------------+
+| KEY CARE AREAS               | Discover the point of care ultrasound family |
+| /en-gb/.../regional-anesthesia |               |                 |
+| /en-gb/.../musculoskeletal   |                | Custom one-liner |
+| /en-gb/.../nicu-picu         |                |                 |
++------------------------------+-----------------------------------+
 ```
 
 ---
@@ -539,6 +549,55 @@ Block header row uses variant name `Cards (feature-cards)`. Each row = one card 
 | [support.jpg]    | Total support                 |
 |                  | We promise to be with you every step of the way... |
 +------------------+-------------------------------+
+```
+
+---
+
+### `cards (products)` — variant of `cards`
+
+| Field | Value |
+|---|---|
+| Status | EXISTING variant |
+| Section | S8 — Related Products |
+| Background | Light (white) |
+| Pages | `/en-gb/...venue-fit` |
+| Local path | `blocks/cards/` |
+| Block Collection reference | [`cards`](https://main--aem-block-collection--adobe.aem.live/block-collection/cards) |
+
+**Content sequences:**
+- Eyebrow: "PRODUCTS"
+- 3-up grid of related product cards
+  1. Venue Ultrasound — "The Venue Ultrasound is the premier solution in the Venue family."
+  2. Venue Go Ultrasound — "A take anywhere ultrasound system..."
+  3. LOGIQ e — "Ultrasound console performance, with crisp images in a portable format..."
+
+**Why a variant, not a new block (David's Model):**
+Image + heading + description + CTA per card is the standard `cards` content model. The 3-up grid layout and "PRODUCTS" eyebrow are CSS concerns.
+
+**Dev work required:**
+Add `.cards.products` CSS rules to `blocks/cards/cards.css` for 3-up grid and eyebrow styling.
+
+**Authoring pattern — cards from links with optional overrides:**
+Authors provide a link per row pointing to each product's detail page. The block JS fetches title, description, and thumbnail from `/query-index.json`. Any cell an author populates takes precedence over the fetched metadata — empty cells fall back to the index automatically.
+
+| Link | Image | Heading | Description |
+|---|---|---|---|
+| `/en-gb/.../venue` | | | | ← fully auto from index |
+| `/en-gb/.../venue-go` | | | Custom tagline | ← description override |
+| `/en-gb/.../logiq-e` | `[custom-thumb.jpg]` | | | ← image only override |
+
+**Author content model:**
+Block header row uses variant name `Cards (products)`. First cell of first row = eyebrow. Each subsequent row = one product (link required; image, heading, description optional overrides):
+
+```
++------------------------------------------------------------------+
+| Cards (products)                                                 |
++------------------------------------------+-----------------------+
+| PRODUCTS                                 |                       |
+| /en-gb/products/ultrasound/.../venue     |                       |
+| /en-gb/products/ultrasound/.../venue-go  |                       |
+| /en-gb/products/ultrasound/.../logiq-e   |                       |
++------------------------------------------+-----------------------+
 ```
 
 ---
