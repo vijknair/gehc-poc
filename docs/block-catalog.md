@@ -26,7 +26,7 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 | `sub-nav` | NEW (custom) | S1 — Sticky Sub-nav | `/en-gb/...venue-fit` |
 | `hero (product)` | EXISTING variant | S2 — Product Hero | `/en-gb/...venue-fit` |
 | `cards (at-a-glance)` | EXISTING variant | S3 — At a Glance; S7 — Feature Items | `/en-gb/...venue-fit` |
-| `cards (features)` | EXISTING variant | S4 — Sticky Feature Scroll | `/en-gb/...venue-fit` |
+| `sticky-scroll` | NEW (custom) | S4 — FEATURES Sticky Scroll | `/en-gb/...venue-fit` |
 | `cards (care-areas)` | EXISTING variant | S5 — Key Care Areas | `/en-gb/...venue-fit` |
 | `carousel (product-media)` | Block Collection variant | S6 — Clinical Images | `/en-gb/...venue-fit` |
 | `columns (promo)` | EXISTING variant | S9 — Promo Card | `/en-gb/...venue-fit` |
@@ -378,43 +378,38 @@ Block header row uses variant name `Cards (at-a-glance)`. Each row = one item:
 
 ---
 
-### `cards (features)` — variant of `cards`
+### `sticky-scroll`
 
 | Field | Value |
 |---|---|
-| Status | EXISTING variant |
+| Status | NEW (custom) |
 | Section | S4 — FEATURES Sticky Scroll |
 | Background | Dark |
 | Pages | `/en-gb/...venue-fit` |
-| Local path | `blocks/cards/` |
-| Block Collection reference | [`cards`](https://main--aem-block-collection--adobe.aem.live/block-collection/cards) |
 
 **Content sequences:**
 - Section eyebrow: "FEATURES"
 - Intro heading: "Uniquely adaptable" + overview paragraph
-- 4 scrolling feature panels, each with: eyebrow label, heading, body paragraph
+- 4 panels, each with: image, eyebrow label, heading, body paragraph
   1. MOVES WITH YOU — "Allowing for cart, kickstand or standard VESA connection options, it's designed for flexibility."
   2. AUTOMATED TOOLS — "Simplify your workflow with AI-enabled clinical tools."
   3. COMPLETELY ADAPTABLE — "Configure the system cart exactly how you want it."
-- Sticky product image on one side changes as user scrolls through panels
+- As the user scrolls, the image column stays fixed (sticky) while text panels scroll past; the active image swaps per panel
 
-**Why a variant, not a new block (David's Model):**
-Each panel has eyebrow + heading + body text — the same content model as any `cards` row. The sticky image and scroll-triggered panel transition are presentation behaviors in CSS/JS. The association between each panel and its product image (which image becomes sticky for which panel) is the only content-model question; that can be handled as an additional image cell per row.
+**Why new block (not a `cards` variant):**
+The sticky scroll is not just a visual treatment — it's a structurally different authoring intent and interaction model. In `cards`, all items are simultaneously visible as a grid. Here, items are revealed one at a time through scroll position, and the image is spatially decoupled from its text panel in the rendered DOM (image lives in a fixed-position column; text scrolls independently). The block JS must build a split-panel layout and manage active-panel state from scroll position — nothing like the cards grid. An author who sees "Cards (features)" would have no idea they're creating a sticky scroll experience; the block name must signal the intent.
 
-**Dev work required:**
-Add `.cards.features` CSS rules to `blocks/cards/cards.css` for dark background, sticky image panel, and scroll-triggered panel activation JS hook.
-
-**Author content model:**
-Block header row uses variant name `Cards (features)`. Each row = one panel:
+**Author content model (proposed):**
+Each row = one panel (image + eyebrow + heading + body):
 
 ```
-+---------------------------------------------+
-| Cards (features)                            |
-+----------+-----------+----------+-----------+
-| [sticky-img.jpg] | MOVES WITH YOU | Moves with you | Allowing for cart, kickstand or standard VESA connection options... |
-| [sticky-img.jpg] | AUTOMATED TOOLS | Simplify your workflow | Helping drive consistency from user to user... |
-| [sticky-img.jpg] | COMPLETELY ADAPTABLE | Configure the system cart | Detachable holders and bins... |
-+----------+-----------+----------+-----------+
++----------------------------------------------------------+
+| Sticky Scroll                                            |
++-----------------+----------------+-------+--------------+
+| [panel-img1.jpg]| MOVES WITH YOU | Moves with you | Allowing for cart, kickstand or VESA options... |
+| [panel-img2.jpg]| AUTOMATED TOOLS| Simplify your workflow | AI-enabled clinical tools help clinicians... |
+| [panel-img3.jpg]| COMPLETELY ADAPTABLE | Configure the cart | Detachable holders and bins allow you to... |
++-----------------+----------------+-------+--------------+
 ```
 
 ---
