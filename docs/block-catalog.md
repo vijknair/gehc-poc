@@ -28,7 +28,7 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 | `cards (at-a-glance)` | EXISTING variant | S3 — At a Glance; S7 — Feature Items | `/en-gb/...venue-fit` |
 | `sticky-scroll` | NEW (custom) | S4 — FEATURES Sticky Scroll | `/en-gb/...venue-fit` |
 | `cards (care-areas)` | EXISTING variant | S5 — Key Care Areas | `/en-gb/...venue-fit` |
-| `carousel (product-media)` | Block Collection variant | S6 — Clinical Images | `/en-gb/...venue-fit` |
+| `carousel (product-media)` | Block Collection variant | S3 — Product Videos; S6 — Clinical Images | `/en-gb/...venue-fit` |
 | `cards (feature-cards)` | EXISTING variant | S8 — Feature Cards | `/en-gb/...venue-fit` |
 | `cards (products)` | EXISTING variant | S8 — Related Products | `/en-gb/...venue-fit` |
 | `contact-form` | NEW (custom) | S10 — Contact Form | `/en-gb/...venue-fit` |
@@ -470,32 +470,50 @@ Block header row uses variant name `Cards (care-areas)`. First row = eyebrow + s
 | Field | Value |
 |---|---|
 | Status | Block Collection variant |
-| Section | S6 — CLINICAL IMAGES |
+| Section | S3 — Product Videos; S6 — CLINICAL IMAGES |
 | Background | Dark/neutral |
 | Pages | `/en-gb/...venue-fit` |
 | Block Collection reference | [`carousel`](https://main--aem-block-collection--adobe.aem.live/block-collection/carousel) |
 
-**Content sequences:**
+**Used twice on the Venue Fit PDP — same block, different media types:**
+
+**S3 — Product Videos**
+Appears after the "At a Glance" strip and overview paragraph. Contains product and tutorial videos:
+- Item 1: "Venue Fit overview" — product overview video
+- Item 2: "venue-fit-tutorial" — tutorial video
+Previous/Next navigation between items.
+
+**S6 — Clinical Images** ("Venue Fit™ at work")
 - Eyebrow: "CLINICAL IMAGES"
 - Section heading: "Venue Fit™ at work"
 - Description: "Utilizing proprietary algorithms, our AI-driven tools deliver accurate calculations and a clear view of your patient."
 - CTA: "See all clinical images"
-- Carousel of ~11 clinical images, each with a short caption (tool name / probe model)
+- ~11 clinical images, each with a short caption (tool name / probe model)
+
+**Why one block covers both:**
+The carousel structure is identical — each item is media + caption/title, with Previous/Next navigation. The block handles both `<video>` / embed URLs and `<img>` per item. Section intro text (eyebrow, heading, description, CTA) sits as default content above the block in both cases.
 
 **Why Block Collection variant:**
-The Block Collection `carousel` handles rotating images with navigation. This usage adds a section intro (eyebrow + heading + description + CTA) before the carousel items, and uses clinical image captions. The section intro is default content above the block; the carousel itself is adopted from Block Collection with `.carousel.product-media` CSS overrides for the clinical image styling.
+The Block Collection `carousel` provides the rotation and navigation scaffolding. `.carousel.product-media` CSS overrides handle dark-background treatment, media sizing, and caption typography.
 
 **Dev work required:**
-Adopt `carousel` block from Block Collection. Add `.carousel.product-media` CSS rules for clinical image sizing, caption typography, and dark-background treatment.
+Adopt `carousel` block from Block Collection. Add `.carousel.product-media` CSS rules. Ensure block JS handles both image `src` and video embed URLs per item.
 
 **Author content model:**
-Section intro as default content, then block. Each carousel row = one image + caption:
+Section intro as default content above the block. Each row = one media item:
 
 ```
 +---------------------------------------------+
 | Carousel (product-media)                    |
 +--------------------+------------------------+
-| [clinical-img1.jpg]| Caption Guidance       |
+| [video-url or img] | Venue Fit overview     |  ← S3: video embed
+| [video-url or img] | venue-fit-tutorial     |  ← S3: video embed
++--------------------+------------------------+
+
++---------------------------------------------+
+| Carousel (product-media)                    |
++--------------------+------------------------+
+| [clinical-img1.jpg]| Caption Guidance       |  ← S6: image + caption
 | [clinical-img2.jpg]| Bladder Volume Tool    |
 | [clinical-img3.jpg]| Brachial Plexus nerve landmark highlighted with cNerve |
 +--------------------+------------------------+
