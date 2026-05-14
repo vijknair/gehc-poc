@@ -29,7 +29,7 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 | `sticky-scroll` | NEW (custom) | S4 — FEATURES Sticky Scroll | `/en-gb/...venue-fit` |
 | `cards (care-areas)` | EXISTING variant | S5 — Key Care Areas | `/en-gb/...venue-fit` |
 | `carousel (product-media)` | Block Collection variant | S6 — Clinical Images | `/en-gb/...venue-fit` |
-| `columns (promo)` | EXISTING variant | S9 — Promo Card | `/en-gb/...venue-fit` |
+| `cards (feature-cards)` | EXISTING variant | S8 — Feature Cards | `/en-gb/...venue-fit` |
 | `contact-form` | NEW (custom) | S10 — Contact Form | `/en-gb/...venue-fit` |
 
 > `/en-gb/...venue-fit` = `/en-gb/products/ultrasound/point-of-care-ultrasound/venue-fit`
@@ -493,39 +493,52 @@ Section intro as default content, then block. Each carousel row = one image + ca
 
 ---
 
-### `columns (promo)` — variant of `columns`
+### `cards (feature-cards)` — variant of `cards`
 
 | Field | Value |
 |---|---|
 | Status | EXISTING variant |
-| Section | S9 — Venue Sprint Promo Card |
-| Background | Light (white) or accent |
+| Section | S8 — Feature Cards |
+| Background | Light (white) |
 | Pages | `/en-gb/...venue-fit` |
-| Local path | `blocks/columns/` |
-| Block Collection reference | [`columns`](https://main--aem-block-collection--adobe.aem.live/block-collection/columns) |
+| Local path | `blocks/cards/` |
+| Block Collection reference | [`cards`](https://main--aem-block-collection--adobe.aem.live/block-collection/cards) |
 
 **Content sequences:**
-- Full-width card with image on one side and text on the other
-- Content: product image, heading "Venue Sprint™ Ultrasound", subheading "Get ahead: Venue Sprint sets the pace", body paragraph, CTA
+- 3 cards: first spans full width, next two sit side-by-side below
+  1. **Venue Fit brochure** (full width) — image + description + "Download brochure" CTA + "Explore POCUS bibliography" link
+  2. **Venue probes** (half width) — image + text + "Learn more"
+  3. **Total support** (half width) — image + text + CTA
 
 **Why a variant, not a new block (David's Model):**
-Image + text side-by-side with a CTA is the canonical `columns` use case. The card treatment (border, background, padding) is a CSS concern.
+Each card has image + heading + description + CTA — the standard `cards` content model. The 1-full + 2-half layout is two CSS Grid rules:
+
+```css
+.cards.feature-cards { grid-template-columns: repeat(2, 1fr); }
+.cards.feature-cards > div:first-child { grid-column: 1 / -1; }
+```
+
+No new block JS, no new authoring model needed.
 
 **Dev work required:**
-Add `.columns.promo` CSS rules to `blocks/columns/columns.css` for card framing, image sizing, and text alignment.
+Add `.cards.feature-cards` CSS rules to `blocks/cards/cards.css` as above.
 
 **Author content model:**
-Block header row uses variant name `Columns (promo)`. Single content row:
+Block header row uses variant name `Cards (feature-cards)`. Each row = one card (first row renders full width automatically):
 
 ```
-+-------------------------------------------------------+
-| Columns (promo)                                       |
-+---------------------------+---------------------------+
-| [venue-sprint.jpg]        | Venue Sprint™ Ultrasound  |
-|                           | Get ahead: Venue Sprint sets the pace |
-|                           | Venue Sprint is powerful Venue family point of care ultrasound software plus wireless probe flexibility |
-|                           | [Learn more](/en-gb/products/ultrasound/point-of-care-ultrasound/venue-sprint) |
-+---------------------------+---------------------------+
++--------------------------------------------------+
+| Cards (feature-cards)                            |
++------------------+-------------------------------+
+| [brochure.jpg]   | Venue Fit brochure            |
+|                  | Download and read this brochure for a more in-depth understanding... |
+|                  | [Download brochure](/en-gb/...) [Explore POCUS bibliography](/en-gb/...) |
+| [probes.jpg]     | Venue probes                  |
+|                  | Experience clear images on a range of patients... |
+|                  | [Learn more](/en-gb/...)      |
+| [support.jpg]    | Total support                 |
+|                  | We promise to be with you every step of the way... |
++------------------+-------------------------------+
 ```
 
 ---
