@@ -43,10 +43,10 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) {
+    [...li.children].forEach((div, idx) => {
+      if (idx === 0 && (div.querySelector('picture') || div.querySelector('.icon') || block.classList.contains('stats'))) {
         div.className = 'cards-card-image';
-      } else if (div.children.length === 1 && div.querySelector('.icon')) {
+      } else if (idx === 0 && div.children.length === 1 && div.querySelector('picture')) {
         div.className = 'cards-card-image';
       } else {
         div.className = 'cards-card-body';

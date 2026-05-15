@@ -156,36 +156,94 @@
   text-decoration: none;
 }
 
-/* stats variant: 4-up horizontal row */
+/* stats variant: key statistics with colored key lines */
+.cards-container:has(.cards.stats) {
+  background-color: var(--light-color);
+  padding: 64px 0;
+  margin: 0;
+}
+
 .cards.stats > ul {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  text-align: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  text-align: left;
 }
 
 .cards.stats > ul > li {
   border: none;
-  border-right: 1px solid #dadada;
-  padding: 16px;
+  padding: 0;
+  background: none;
+  position: relative;
+  padding-bottom: 16px;
 }
 
-.cards.stats > ul > li:last-child {
-  border-right: none;
+.cards.stats > ul > li::after {
+  content: '';
+  display: block;
+  height: 4px;
+  width: 100%;
+  margin-top: 16px;
+  border-radius: 2px;
 }
 
-.cards.stats .cards-card-body > p:first-child {
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
+.cards.stats > ul > li:nth-child(1)::after {
+  background-color: #f37f63;
 }
 
-@media (width < 600px) {
-  .cards.stats > ul {
-    grid-template-columns: repeat(2, 1fr);
+.cards.stats > ul > li:nth-child(2)::after {
+  background-color: #5b5b67;
+}
+
+.cards.stats > ul > li:nth-child(3)::after {
+  background-color: #19bb7c;
+}
+
+.cards.stats > ul > li:nth-child(4)::after {
+  background-color: #45b2c5;
+}
+
+.cards.stats .cards-card-image {
+  line-height: 1;
+}
+
+.cards.stats .cards-card-image p {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 56px;
+  letter-spacing: -1.25px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.cards.stats .cards-card-body {
+  margin: 8px 0 0;
+}
+
+.cards.stats .cards-card-body p {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color-secondary);
+  margin: 0;
+}
+
+@media (width >= 768px) {
+  .cards-container:has(.cards.stats) {
+    padding: 96px 0;
   }
 
-  .cards.stats > ul > li:nth-child(2) {
-    border-right: none;
+  .cards.stats > ul {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+  }
+
+  .cards.stats .cards-card-image p {
+    font-size: 88px;
+    line-height: 104px;
+  }
+
+  .cards.stats .cards-card-body p {
+    font-size: 18px;
+    line-height: 28px;
   }
 }
 
