@@ -348,7 +348,7 @@
 .cards.featureslist .cards-card-body p {
   font-size: 16px;
   line-height: 24px;
-  color: var(--text-color);
+  color: var(--text-color-secondary);
   margin: 0;
 }
 
