@@ -20,7 +20,7 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 | `hero-carousel` | NEW (custom) | S1 — Hero | `/en-gb` |
 | `cards (quick-links)` | EXISTING variant | S2 — Category Nav | `/en-gb` |
 | `cards (stats)` | EXISTING variant | S3 — Key Stats | `/en-gb` |
-| `cards (news)` | EXISTING variant | S4 — What's New; S9 — Insights | `/en-gb`, `/en-gb/...venue-fit` |
+| `cards (related-content)` | EXISTING variant | S4 — What's New; S9 — Insights | `/en-gb`, `/en-gb/...venue-fit` |
 | default content | No block needed | S5 — Contact Us | `/en-gb`, `/en-gb/...venue-fit` |
 | `breadcrumb` | NEW (custom) | S1 — Breadcrumb | `/en-gb/...venue-fit` |
 | `sub-nav` | NEW (custom) | S1 — Sticky Sub-nav | `/en-gb/...venue-fit` |
@@ -155,7 +155,7 @@ Block header row uses variant name `Cards (stats)`. Each row = one stat:
 
 ---
 
-### `cards (news)` — variant of `cards`
+### `cards (related-content)` — variant of `cards`
 
 | Field | Value |
 |---|---|
