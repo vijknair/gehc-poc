@@ -66,6 +66,51 @@ export default function decorate(block) {
     addScrollArrows(block, ul);
   }
 
+  if (block.classList.contains('feature-cards')) {
+    const items = [...ul.children];
+    const firstItem = items[0];
+
+    if (firstItem && !firstItem.querySelector('picture') && !firstItem.querySelector('.icon')) {
+      const texts = [...firstItem.querySelectorAll('div')].map((d) => d.textContent.trim()).filter(Boolean);
+      if (texts.length > 0) {
+        const header = document.createElement('div');
+        header.className = 'cards-featurecards-header';
+        const [eyebrowText, titleText, descText] = texts;
+        if (eyebrowText) {
+          const eyebrow = document.createElement('p');
+          eyebrow.className = 'cards-featurecards-eyebrow';
+          eyebrow.textContent = eyebrowText;
+          header.append(eyebrow);
+        }
+        if (titleText) {
+          const title = document.createElement('h2');
+          title.className = 'cards-featurecards-title';
+          title.textContent = titleText;
+          header.append(title);
+        }
+        if (descText) {
+          const desc = document.createElement('p');
+          desc.className = 'cards-featurecards-desc';
+          desc.textContent = descText;
+          header.append(desc);
+        }
+        block.insertBefore(header, ul);
+      }
+      firstItem.remove();
+    }
+
+    const cardItems = [...ul.children];
+    const isOdd = cardItems.length % 2 === 1;
+    if (isOdd && cardItems[0]) {
+      cardItems[0].classList.add('feature-card-full');
+    }
+    cardItems.forEach((li) => {
+      if (!li.classList.contains('feature-card-full')) {
+        li.classList.add('feature-card-half');
+      }
+    });
+  }
+
   if (block.classList.contains('featureslist')) {
     const items = [...ul.children];
     const firstItem = items[0];
