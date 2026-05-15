@@ -1,0 +1,25 @@
+{
+  "status": "success",
+  "url": "https://www.gehealthcare.com/en-gb/products/ultrasound/point-of-care-ultrasound/venue-fit",
+  "path": "en-gb/products/ultrasound/point-of-care-ultrasound/venue-fit",
+  "timestamp": "2026-05-15T10:54:44.893Z",
+  "title": "Venue Fit™ Ultrasound | GE HealthCare (United Kingdom)",
+  "template": "product-detail",
+  "blocks": [
+    "breadcrumb",
+    "sub-nav",
+    "hero-product",
+    "cards-at-a-glance",
+    "cards-at-a-glance",
+    "carousel-product-media",
+    "carousel-product-media",
+    "sticky-scroll",
+    "cards-care-areas",
+    "cards-feature-cards",
+    "cards-products",
+    "cards-products",
+    "cards-relatedcontent",
+    "cards-relatedcontent",
+    "contact-form"
+  ]
+}

@@ -64,9 +64,144 @@
           "id": "section-5",
           "name": "Contact Us",
           "selector": ".contactus",
-          "style": "purple",
+          "style": "contact-us",
           "blocks": [],
           "defaultContent": [".ge-contact-us .title h2", ".ge-contact-us .cta-wrap a"]
+        }
+      ]
+    },
+    {
+      "name": "product-detail",
+      "urls": [
+        "https://www.gehealthcare.com/en-gb/products/ultrasound/point-of-care-ultrasound/venue-fit"
+      ],
+      "description": "Product detail page — hero, at-a-glance, features, care areas, media, related content, contact form",
+      "blocks": [
+        {
+          "name": "breadcrumb",
+          "instances": [".ge-secondary-nav-section-breadcrumbs"]
+        },
+        {
+          "name": "sub-nav",
+          "instances": [".ge-secondary-nav-section-pagelinks"]
+        },
+        {
+          "name": "hero-product",
+          "instances": [".ge-feature-hero"]
+        },
+        {
+          "name": "cards-at-a-glance",
+          "instances": [".ge-features-list"]
+        },
+        {
+          "name": "carousel-product-media",
+          "instances": [".ge-product-media-carousel"]
+        },
+        {
+          "name": "sticky-scroll",
+          "instances": [".ge-feature-hero-container"]
+        },
+        {
+          "name": "cards-care-areas",
+          "instances": ["#RelatedContentModel-1822868214"]
+        },
+        {
+          "name": "cards-feature-cards",
+          "instances": [".ge-feature-cards"]
+        },
+        {
+          "name": "cards-products",
+          "instances": [".ge-product-feature"]
+        },
+        {
+          "name": "cards-relatedcontent",
+          "instances": [".ge-related-content"]
+        },
+        {
+          "name": "contact-form",
+          "instances": [".gehc-marketo-form-wraper"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Breadcrumb + Sub-Nav",
+          "selector": ".secondarynavigation",
+          "style": null,
+          "blocks": ["breadcrumb", "sub-nav"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Product Hero",
+          "selector": ".herobanner",
+          "style": null,
+          "blocks": ["hero-product"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-3",
+          "name": "At a Glance + Media",
+          "selector": [".featureslist", ".carousel-container"],
+          "style": null,
+          "blocks": ["cards-at-a-glance", "carousel-product-media"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-4",
+          "name": "Features Sticky Scroll",
+          "selector": ".herostickyscrolling",
+          "style": null,
+          "blocks": ["sticky-scroll"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-5",
+          "name": "Key Care Areas",
+          "selector": ".relatedcontent",
+          "style": null,
+          "blocks": ["cards-care-areas"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-6",
+          "name": "Clinical Images",
+          "selector": ".carousel-container:nth-of-type(2)",
+          "style": null,
+          "blocks": ["carousel-product-media"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-7",
+          "name": "Feature Cards",
+          "selector": ".featurecards",
+          "style": null,
+          "blocks": ["cards-feature-cards"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-8",
+          "name": "Related Content",
+          "selector": ".relatedcontent:nth-of-type(2)",
+          "style": null,
+          "blocks": ["cards-relatedcontent"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-9",
+          "name": "Contact Form",
+          "selector": ".contactus",
+          "style": "contact-us",
+          "blocks": ["contact-form"],
+          "defaultContent": [".ge-contact-us .title h2"]
+        },
+        {
+          "id": "section-10",
+          "name": "Veeva Doc ID",
+          "selector": ".veevadocumentid",
+          "style": "veevadocid",
+          "blocks": [],
+          "defaultContent": [".ge-veevadocument-id-container"]
         }
       ]
     }
