@@ -66,6 +66,21 @@ export default function decorate(block) {
     addScrollArrows(block, ul);
   }
 
+  if (block.classList.contains('featureslist')) {
+    const items = [...ul.children];
+    const firstItem = items[0];
+    if (firstItem && !firstItem.querySelector('picture') && !firstItem.querySelector('.icon svg')) {
+      const titleText = firstItem.textContent.trim();
+      if (titleText) {
+        const title = document.createElement('h2');
+        title.className = 'cards-featureslist-title';
+        title.textContent = titleText;
+        block.insertBefore(title, ul);
+      }
+      firstItem.remove();
+    }
+  }
+
   if (block.classList.contains('relatedcontent')) {
     const items = [...ul.children];
     const firstItem = items[0];

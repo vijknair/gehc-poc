@@ -307,6 +307,15 @@
   margin: 0;
 }
 
+.cards.featureslist .cards-featureslist-title {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: -0.75px;
+  color: var(--text-color);
+  margin: 0 0 40px;
+}
+
 .cards.featureslist > ul {
   grid-template-columns: repeat(2, 1fr);
   gap: 40px 24px;
