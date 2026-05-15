@@ -428,16 +428,22 @@ main .section.purple {
   background-color: var(--brand-purple);
   color: #fff;
   margin: 0;
-  padding: 48px 0;
-  text-align: center;
+  padding: 48px 24px;
 }
 
 main .section.purple h1,
 main .section.purple h2,
 main .section.purple h3,
 main .section.purple h4,
+main .section.purple h5,
+main .section.purple h6,
 main .section.purple p {
   color: #fff;
+}
+
+main .section.purple h5 {
+  font-weight: 400;
+  margin-bottom: 8px;
 }
 
 main .section.purple a.button:any-link {
@@ -449,4 +455,21 @@ main .section.purple a.button:any-link {
 main .section.purple a.button:hover {
   background-color: var(--brand-purple-light);
   border-color: var(--brand-purple-light);
+}
+
+main .section.veevadocid {
+  margin: 0;
+  padding: 16px 24px;
+}
+
+main .section.veevadocid p {
+  font-size: 12px;
+  color: var(--text-color-secondary);
+  margin: 0;
+}
+
+@media (width >= 768px) {
+  main .section.purple {
+    padding: 64px 32px;
+  }
 }
