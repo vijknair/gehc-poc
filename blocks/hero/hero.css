@@ -35,3 +35,117 @@
     padding: 40px 32px;
   }
 }
+
+/* product variant: text left, image right */
+.hero.product {
+  position: relative;
+  padding: 0;
+  min-height: auto;
+  background-color: var(--light-color);
+  overflow: hidden;
+}
+
+.hero.product > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero.product > div > div:first-child {
+  padding: 32px 24px;
+  order: 2;
+}
+
+.hero.product > div > div:last-child {
+  order: 1;
+}
+
+.hero.product h1 {
+  color: var(--text-color);
+  margin: 0 0 16px;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: -1.25px;
+  max-width: none;
+}
+
+.hero.product p {
+  color: var(--text-color-secondary);
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0 0 24px;
+}
+
+.hero.product picture {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  display: block;
+}
+
+.hero.product img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 375 / 389;
+  object-fit: cover;
+  display: block;
+}
+
+.hero.product .button-container {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+}
+
+.hero.product a.button:any-link {
+  font-size: 14px;
+  padding: 8px 20px;
+}
+
+.hero.product a.button.primary:any-link {
+  background-color: var(--brand-purple);
+  border-color: var(--brand-purple);
+  color: #fff;
+}
+
+.hero.product a.button.secondary:any-link {
+  background-color: transparent;
+  border-color: var(--brand-purple);
+  color: var(--brand-purple);
+}
+
+@media (width >= 768px) {
+  .hero.product > div {
+    flex-direction: row;
+    align-items: center;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
+
+  .hero.product > div > div:first-child {
+    flex: 1;
+    padding: 48px 32px;
+    order: 1;
+  }
+
+  .hero.product > div > div:last-child {
+    flex: 1;
+    order: 2;
+  }
+
+  .hero.product h1 {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  .hero.product img {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 540px;
+  }
+}
+
+@media (width >= 1440px) {
+  .hero.product img {
+    min-height: 650px;
+  }
+}
