@@ -65,4 +65,37 @@ export default function decorate(block) {
   if (block.classList.contains('quick-links')) {
     addScrollArrows(block, ul);
   }
+
+  if (block.classList.contains('relatedcontent')) {
+    const items = [...ul.children];
+    const firstItem = items[0];
+    const lastItem = items[items.length - 1];
+
+    if (firstItem && !firstItem.querySelector('picture') && !firstItem.querySelector('img')) {
+      const eyebrowText = firstItem.textContent.trim();
+      if (eyebrowText) {
+        const eyebrow = document.createElement('p');
+        eyebrow.className = 'cards-relatedcontent-eyebrow';
+        eyebrow.textContent = eyebrowText;
+        block.insertBefore(eyebrow, ul);
+      }
+      firstItem.remove();
+    }
+
+    if (lastItem && !lastItem.querySelector('picture') && !lastItem.querySelector('img')) {
+      const linkText = lastItem.querySelector('.cards-card-body')?.textContent?.trim();
+      const linkHref = lastItem.querySelector('.cards-card-body:last-child')?.textContent?.trim();
+      if (linkText && linkHref && linkHref.startsWith('/')) {
+        const cta = document.createElement('p');
+        cta.className = 'cards-relatedcontent-cta';
+        const a = document.createElement('a');
+        a.href = linkHref;
+        a.textContent = linkText;
+        a.innerHTML = `${linkText} ${CHEVRON_SVG}`;
+        cta.append(a);
+        block.append(cta);
+      }
+      lastItem.remove();
+    }
+  }
 }

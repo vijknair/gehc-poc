@@ -266,6 +266,40 @@
   margin: 0;
 }
 
+/* relatedcontent eyebrow + CTA */
+.cards.relatedcontent .cards-relatedcontent-eyebrow {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  letter-spacing: 0.32px;
+  margin: 0 0 24px;
+}
+
+.cards.relatedcontent .cards-relatedcontent-cta {
+  margin: 32px 0 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.cards.relatedcontent p.cards-relatedcontent-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--brand-purple);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cards.relatedcontent p.cards-relatedcontent-cta a:hover {
+  color: var(--brand-purple-hover);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.cards.relatedcontent p.cards-relatedcontent-cta a svg {
+  width: 16px;
+  height: 16px;
+}
+
 /* === HOVER STATES (after all variants to satisfy specificity order) === */
 .cards.relatedcontent > ul > li:hover img {
   transform: scale(1.08);
