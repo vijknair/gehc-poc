@@ -302,7 +302,7 @@
 
 /* === FEATURESLIST VARIANT === */
 .cards-container:has(.cards.featureslist) {
-  background-color: var(--brand-purple-light);
+  background-color: var(--light-color);
   padding: 48px 0;
   margin: 0;
 }
