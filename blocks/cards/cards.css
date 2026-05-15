@@ -1,3 +1,4 @@
+/* === BASE CARDS === */
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -26,31 +27,13 @@
   object-fit: cover;
 }
 
-/* news variant */
-.cards.news > ul {
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
-.cards.news > ul > li {
-  border: none;
-}
-
-.cards.news > ul > li img {
-  border-radius: 4px;
-}
-
-.cards.news .cards-card-body {
-  padding: 8px 0;
-}
-
-/* quick-links variant: section background */
+/* === QUICK-LINKS VARIANT === */
 .cards-container:has(.cards.quick-links) {
   background-color: #f4f1f8;
   padding: 48px 0;
   margin: 0;
 }
 
-/* quick-links: horizontal scrollable icon cards */
 .cards.quick-links > ul {
   display: flex;
   overflow-x: auto;
@@ -89,7 +72,6 @@
   margin-bottom: 0;
 }
 
-/* quick-links scroll arrows */
 .ql-scroll-wrapper {
   position: relative;
 }
@@ -156,7 +138,7 @@
   text-decoration: none;
 }
 
-/* stats variant: key statistics with colored key lines */
+/* === STATS VARIANT === */
 .cards-container:has(.cards.stats) {
   background-color: var(--light-color);
   padding: 64px 0;
@@ -171,10 +153,10 @@
 
 .cards.stats > ul > li {
   border: none;
-  padding: 0;
+  padding: 0 0 16px;
   background: none;
-  position: relative;
-  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .cards.stats > ul > li::after {
@@ -182,7 +164,7 @@
   display: block;
   height: 4px;
   width: 100%;
-  margin-top: 16px;
+  margin-top: auto;
   border-radius: 2px;
 }
 
@@ -226,7 +208,104 @@
   margin: 0;
 }
 
+/* === RELATEDCONTENT VARIANT === */
+.cards.relatedcontent > ul {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.cards.relatedcontent > ul > li {
+  border: none;
+  background: none;
+  overflow: hidden;
+}
+
+.cards.relatedcontent .cards-card-image {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.cards.relatedcontent .cards-card-image a:any-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.cards.relatedcontent > ul > li img {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  transition: transform 0.4s ease;
+}
+
+.cards.relatedcontent .cards-card-body {
+  padding: 12px 0 0;
+  margin: 0;
+}
+
+.cards.relatedcontent .cards-card-body h3 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--text-color);
+  margin: 0 0 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cards.relatedcontent .cards-card-body h3 a:any-link {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.cards.relatedcontent .cards-card-body p {
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--text-color-secondary);
+  margin: 0;
+}
+
+/* === HOVER STATES (after all variants to satisfy specificity order) === */
+.cards.relatedcontent > ul > li:hover img {
+  transform: scale(1.08);
+}
+
+.cards.relatedcontent .cards-card-body h3 a:hover {
+  color: var(--brand-purple);
+}
+
+.cards.quick-links > ul > li:hover {
+  border: 2px solid var(--brand-purple);
+  padding: 22px 10px 0;
+}
+
+.cards.quick-links > ul > li:hover .cards-card-body a {
+  color: var(--brand-purple);
+}
+
+.cards.quick-links > ul > li:hover .icon svg {
+  color: var(--brand-purple);
+}
+
+/* === RESPONSIVE === */
 @media (width >= 768px) {
+  .cards.quick-links > ul > li {
+    flex: 0 0 156px;
+    height: 156px;
+    padding: 32px 16px 0;
+  }
+
+  .cards.quick-links .cards-card-image .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cards.quick-links .cards-card-image .icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
   .cards-container:has(.cards.stats) {
     padding: 96px 0;
   }
@@ -245,37 +324,8 @@
     font-size: 18px;
     line-height: 28px;
   }
-}
 
-/* quick-links hover: purple border + purple icon + purple text */
-.cards.quick-links > ul > li:hover {
-  border: 2px solid var(--brand-purple);
-  padding: 22px 10px 0;
-}
-
-.cards.quick-links > ul > li:hover .cards-card-body a {
-  color: var(--brand-purple);
-}
-
-.cards.quick-links > ul > li:hover .icon svg {
-  color: var(--brand-purple);
-}
-
-/* quick-links desktop: larger cards */
-@media (width >= 768px) {
-  .cards.quick-links > ul > li {
-    flex: 0 0 156px;
-    height: 156px;
-    padding: 32px 16px 0;
-  }
-
-  .cards.quick-links .cards-card-image .icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .cards.quick-links .cards-card-image .icon svg {
-    width: 40px;
-    height: 40px;
+  .cards.relatedcontent > ul {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
