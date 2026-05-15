@@ -4,6 +4,7 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
+  border-bottom: 3px solid var(--brand-purple);
 }
 
 header nav {
@@ -13,12 +14,13 @@ header nav {
     'hamburger brand tools' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
-  gap: 0 24px;
+  gap: 0 16px;
   margin: auto;
-  max-width: 1248px;
+  max-width: 1264px;
   height: var(--nav-height);
-  padding: 0 24px;
+  padding: 0 16px;
   font-family: var(--body-font-family);
+  font-size: 14px;
 }
 
 header nav[aria-expanded='true'] {
@@ -37,7 +39,8 @@ header nav[aria-expanded='true'] {
 
   header nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     gap: 0 32px;
     max-width: 1264px;
     padding: 0 32px;
@@ -55,7 +58,13 @@ header nav p {
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+header nav a:hover {
+  color: var(--brand-purple);
 }
 
 /* hamburger */
@@ -142,15 +151,43 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
+  flex-shrink: 0;
   line-height: 1;
+  max-width: 160px;
+  overflow: hidden;
 }
 
-header nav .nav-brand img {
+header .nav-brand picture {
+  display: block;
   width: 128px;
+}
+
+header .nav-brand img {
+  width: 128px;
+  max-width: 128px;
   height: auto;
+}
+
+/* tools */
+header nav .nav-tools {
+  grid-area: tools;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+header nav .nav-tools a:any-link {
+  color: var(--text-color-secondary);
+  font-size: 14px;
+}
+
+header nav .nav-tools a:hover {
+  color: var(--brand-purple);
+}
+
+header nav .nav-tools .default-content-wrapper {
+  display: flex;
+  gap: 24px;
+  align-items: center;
 }
 
 /* sections */
@@ -170,11 +207,11 @@ header nav[aria-expanded='true'] .nav-sections {
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
+  font-size: 14px;
 }
 
 header nav .nav-sections ul > li {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 header nav .nav-sections ul > li > ul {
@@ -183,6 +220,15 @@ header nav .nav-sections ul > li > ul {
 
 header nav .nav-sections ul > li > ul > li {
   font-weight: 400;
+}
+
+header nav .nav-sections ul > li > ul > li a:any-link {
+  color: var(--text-color-secondary);
+  font-size: 14px;
+}
+
+header nav .nav-sections ul > li > ul > li a:hover {
+  color: var(--brand-purple);
 }
 
 @media (width >= 900px) {
@@ -198,33 +244,12 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .nav-drop {
     position: relative;
-    padding-right: 16px;
     cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
-
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
   }
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    gap: 32px;
     margin: 0;
   }
 
@@ -242,31 +267,28 @@ header nav .nav-sections ul > li > ul > li {
     display: block;
     position: absolute;
     left: -24px;
-    width: 200px;
+    width: 240px;
     top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
+    padding: 16px 24px;
+    background-color: var(--background-color);
     white-space: initial;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
+    border-radius: var(--border-radius-m);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
     content: '';
     position: absolute;
     top: -8px;
-    left: 16px;
+    left: 24px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+    border-bottom: 8px solid var(--background-color);
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
     padding: 8px 0;
   }
-}
-
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
 }

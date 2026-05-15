@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "en-gb-homepage",
+      "urls": [
+        "https://www.gehealthcare.com/en-gb"
+      ],
+      "description": "GE HealthCare UK Homepage — hero carousel, category quick links, key stats, article cards, contact CTA",
+      "blocks": [
+        {
+          "name": "hero-carousel",
+          "instances": [".ge-homepage-hero-carousel"]
+        },
+        {
+          "name": "cards-quick-links",
+          "instances": [".ge-quicklink-card-carousel"]
+        },
+        {
+          "name": "cards-stats",
+          "instances": [".ge-highlight-keystats"]
+        },
+        {
+          "name": "cards-news",
+          "instances": [".ge-related-content"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero Carousel",
+          "selector": ".carousel-container",
+          "style": null,
+          "blocks": ["hero-carousel"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Category Quick Links",
+          "selector": ".quicklinkscarousel",
+          "style": null,
+          "blocks": ["cards-quick-links"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-3",
+          "name": "Key Statistics",
+          "selector": ".highlightkeystats",
+          "style": null,
+          "blocks": ["cards-stats"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-4",
+          "name": "What's New Articles",
+          "selector": ".relatedcontent",
+          "style": null,
+          "blocks": ["cards-news"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-5",
+          "name": "Contact Us",
+          "selector": ".contactus",
+          "style": "purple",
+          "blocks": [],
+          "defaultContent": [".ge-contact-us .title h2", ".ge-contact-us .cta-wrap a"]
+        }
+      ]
+    }
+  ]
+}

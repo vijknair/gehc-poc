@@ -1,0 +1,39 @@
+{
+  "variantName": "hero-carousel",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-05-14T10:32:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.gehealthcare.com/en-gb",
+    "originPage": "GE HealthCare UK homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero-carousel",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "carousel + hero banner image + navigation controls + slide counter",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "homepage hero banners with rotating slides",
+      "full-width image carousels at page top",
+      "promotional banner rotators"
+    ],
+    "notSuitableFor": [
+      "simple static hero with text and CTA",
+      "hero sections without images",
+      "mid-page content banners"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en-gb"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-14T10:32:00.000Z"
+  }
+}
