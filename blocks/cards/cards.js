@@ -83,19 +83,31 @@ export default function decorate(block) {
     }
 
     if (lastItem && !lastItem.querySelector('picture') && !lastItem.querySelector('img')) {
-      const linkText = lastItem.querySelector('.cards-card-body')?.textContent?.trim();
-      const linkHref = lastItem.querySelector('.cards-card-body:last-child')?.textContent?.trim();
-      if (linkText && linkHref && linkHref.startsWith('/')) {
+      const allDivs = [...lastItem.querySelectorAll('div')];
+      const texts = allDivs.map((d) => d.textContent.trim()).filter(Boolean);
+      const linkText = texts.find((t) => !t.startsWith('/') && !t.startsWith('http'));
+      const linkHref = texts.find((t) => t.startsWith('/') || t.startsWith('http'));
+      if (linkText && linkHref) {
         const cta = document.createElement('p');
         cta.className = 'cards-relatedcontent-cta';
         const a = document.createElement('a');
         a.href = linkHref;
-        a.textContent = linkText;
         a.innerHTML = `${linkText} ${CHEVRON_SVG}`;
         cta.append(a);
         block.append(cta);
       }
       lastItem.remove();
     }
+
+    ul.querySelectorAll('li').forEach((li) => {
+      const link = li.querySelector('a[href]');
+      if (link) {
+        li.style.cursor = 'pointer';
+        li.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return;
+          window.location.href = link.href;
+        });
+      }
+    });
   }
 }
