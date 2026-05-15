@@ -1,12 +1,6 @@
 export default function decorate(block) {
-  if (block.classList.contains('product')) {
-    const buttons = block.querySelectorAll('.button-container');
-    buttons.forEach((bc, i) => {
-      const btn = bc.querySelector('a.button');
-      if (btn) {
-        btn.classList.remove('primary', 'secondary', 'accent');
-        btn.classList.add(i === 0 ? 'primary' : 'secondary');
-      }
-    });
-  }
+  // product variant: no additional JS decoration needed
+  // button primary/secondary classes are assigned by decorateButtons in scripts.js
+  // based on <strong> (primary) and <em> (secondary) wrapping in authored content
+  block.classList.add('loaded');
 }
