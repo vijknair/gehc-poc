@@ -460,23 +460,41 @@ main .section.purple a.button:hover {
 main .section.contact-us {
   background-color: var(--brand-purple-light);
   margin: 0;
-  padding: 48px 24px;
+  padding: 64px 24px;
 }
 
 main .section.contact-us h2 {
   color: var(--text-color);
   margin-top: 0;
+  margin-bottom: 24px;
+}
+
+main .section.contact-us p {
+  color: var(--text-color-secondary);
+}
+
+main .section.contact-us .button-container {
+  margin: 0;
 }
 
 main .section.contact-us a.button:any-link {
   background-color: var(--brand-purple);
   border-color: var(--brand-purple);
   color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: var(--button-primary-padding);
+  border-radius: var(--button-primary-radius);
 }
 
 main .section.contact-us a.button:hover {
   background-color: var(--brand-purple-hover);
   border-color: var(--brand-purple-hover);
+}
+
+main .section.contact-us a.button:active {
+  background-color: var(--brand-purple-pressed);
+  border-color: var(--brand-purple-pressed);
 }
 
 @media (width >= 768px) {
