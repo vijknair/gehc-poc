@@ -215,7 +215,12 @@ header nav .nav-sections ul > li {
 }
 
 header nav .nav-sections ul > li > ul {
+  display: none;
   margin-top: 0;
+}
+
+header nav .nav-sections ul > li[aria-expanded='true'] > ul {
+  display: block;
 }
 
 header nav .nav-sections ul > li > ul > li {
