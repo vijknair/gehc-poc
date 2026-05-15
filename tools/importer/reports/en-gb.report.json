@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.gehealthcare.com/en-gb",
+  "path": "en-gb",
+  "timestamp": "2026-05-14T14:05:07.686Z",
+  "title": "GE HealthCare Technologies Inc | Home | GE HealthCare (United Kingdom)",
+  "template": "en-gb-homepage",
+  "blocks": [
+    "hero-carousel",
+    "cards-quick-links",
+    "cards-stats",
+    "cards-news"
+  ]
+}
