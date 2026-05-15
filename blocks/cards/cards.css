@@ -309,17 +309,18 @@
 
 .cards.featureslist > ul {
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px 24px;
+  gap: 40px 24px;
 }
 
 .cards.featureslist > ul > li {
   border: none;
   background: none;
   padding: 0;
+  min-height: 132px;
 }
 
 .cards.featureslist .cards-card-image {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .cards.featureslist .cards-card-image .icon {
@@ -338,16 +339,16 @@
 
 .cards.featureslist .cards-card-body h3 {
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 28px;
   color: var(--text-color);
-  margin: 0 0 4px;
+  margin: 0 0 8px;
 }
 
 .cards.featureslist .cards-card-body p {
   font-size: 16px;
   line-height: 24px;
-  color: var(--text-color-secondary);
+  color: var(--text-color);
   margin: 0;
 }
 
@@ -358,7 +359,7 @@
 
   .cards.featureslist > ul {
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 40px 32px;
   }
 }
 
