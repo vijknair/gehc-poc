@@ -51,28 +51,27 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--brand-purple);
-  color: #fff;
-  font-size: 14px;
+  color: var(--brand-purple);
+  font-size: 16px;
   font-weight: 700;
-  padding: 8px 20px;
-  border-radius: var(--button-primary-radius);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .carousel .carousel-cta:hover {
-  background-color: var(--brand-purple-hover);
+  color: var(--brand-purple-hover);
 }
 
 .carousel .carousel-cta svg {
   width: 14px;
   height: 14px;
+  display: none;
 }
 
 /* track */
 .carousel .carousel-track {
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
 }
 
 .carousel .carousel-slide {
@@ -138,19 +137,24 @@
   margin: 4px 0 0;
 }
 
-/* navigation: prev/next arrows + dots */
+/* navigation: arrows positioned over slides */
 .carousel .carousel-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 16px 0;
+  justify-content: space-between;
+  padding: 0 16px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .carousel .carousel-prev,
 .carousel .carousel-next {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background-color: var(--brand-purple);
   border: none;
@@ -161,6 +165,8 @@
   color: #fff;
   padding: 0;
   flex-shrink: 0;
+  pointer-events: all;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
 }
 
 .carousel .carousel-prev:hover,
@@ -172,14 +178,17 @@
   transform: rotate(180deg);
 }
 
+/* dot indicators below caption */
 .carousel .carousel-dots {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
+  justify-content: center;
+  padding: 16px 0;
 }
 
 .carousel .carousel-dot {
-  width: 32px;
+  width: 48px;
   height: 4px;
   border: none;
   border-radius: 2px;

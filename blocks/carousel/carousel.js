@@ -143,9 +143,10 @@ export default function decorate(block) {
     });
 
     nav.append(prevBtn);
-    nav.append(dots);
     nav.append(nextBtn);
-    block.append(nav);
+    track.append(nav);
+
+    block.append(dots);
 
     let current = 0;
     const showSlide = (idx) => {
@@ -166,6 +167,17 @@ export default function decorate(block) {
     });
     dots.querySelectorAll('.carousel-dot').forEach((dot, i) => {
       dot.addEventListener('click', () => showSlide(i));
+    });
+
+    let autoplay = setInterval(() => {
+      showSlide((current + 1) % slides.length);
+    }, 5000);
+
+    track.addEventListener('mouseenter', () => clearInterval(autoplay));
+    track.addEventListener('mouseleave', () => {
+      autoplay = setInterval(() => {
+        showSlide((current + 1) % slides.length);
+      }, 5000);
     });
   }
 }
