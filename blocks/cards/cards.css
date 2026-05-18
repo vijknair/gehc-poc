@@ -454,6 +454,18 @@
   margin: 0;
 }
 
+.cards.featureslist .cards-featureslist-header {
+  margin-bottom: 40px;
+}
+
+.cards.featureslist .cards-featureslist-eyebrow {
+  font-size: var(--eyebrow-font-size);
+  font-weight: var(--eyebrow-font-weight);
+  letter-spacing: var(--eyebrow-letter-spacing);
+  color: var(--text-color);
+  margin: 0 0 8px;
+}
+
 .cards.featureslist .cards-featureslist-title {
   font-size: 26px;
   font-weight: 400;
@@ -461,6 +473,23 @@
   letter-spacing: -0.75px;
   color: var(--text-color);
   margin: 0 0 40px;
+}
+
+.cards.featureslist .cards-featureslist-cta {
+  margin: 32px 0 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.cards.featureslist .cards-featureslist-cta a {
+  color: var(--brand-purple);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.cards.featureslist .cards-featureslist-cta a:hover {
+  color: var(--brand-purple-hover);
 }
 
 .cards.featureslist > ul {

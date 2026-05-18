@@ -115,14 +115,44 @@ export default function decorate(block) {
     const items = [...ul.children];
     const firstItem = items[0];
     if (firstItem && !firstItem.querySelector('picture') && !firstItem.querySelector('.icon svg')) {
-      const titleText = firstItem.textContent.trim();
-      if (titleText) {
+      const divs = [...firstItem.querySelectorAll('div')];
+      const texts = divs.map((d) => d.textContent.trim()).filter(Boolean);
+      const headerWrap = document.createElement('div');
+      headerWrap.className = 'cards-featureslist-header';
+      const [eyebrowText, titleText] = texts;
+      if (texts.length >= 2) {
+        const eyebrow = document.createElement('p');
+        eyebrow.className = 'cards-featureslist-eyebrow';
+        eyebrow.textContent = eyebrowText;
+        headerWrap.append(eyebrow);
         const title = document.createElement('h2');
         title.className = 'cards-featureslist-title';
         title.textContent = titleText;
-        block.insertBefore(title, ul);
+        headerWrap.append(title);
+      } else if (texts.length === 1) {
+        const title = document.createElement('h2');
+        title.className = 'cards-featureslist-title';
+        title.textContent = eyebrowText;
+        headerWrap.append(title);
       }
+      block.insertBefore(headerWrap, ul);
       firstItem.remove();
+    }
+
+    const remainingItems = [...ul.children];
+    const lastItem = remainingItems[remainingItems.length - 1];
+    if (lastItem && !lastItem.querySelector('picture') && !lastItem.querySelector('.icon svg')) {
+      const link = lastItem.querySelector('a');
+      if (link) {
+        const cta = document.createElement('p');
+        cta.className = 'cards-featureslist-cta';
+        const a = document.createElement('a');
+        a.href = link.href;
+        a.textContent = link.textContent;
+        cta.append(a);
+        block.append(cta);
+        lastItem.remove();
+      }
     }
   }
 
