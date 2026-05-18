@@ -25,16 +25,17 @@ export default function decorate(block) {
     const col2Text = cols[1]?.textContent?.trim() || '';
 
     if (idx === 0 && !cols[0]?.querySelector('picture') && !col1Text.startsWith('vidyard:')) {
+      const headerCol = cols[0];
+      const eyebrowEl = headerCol.querySelector('p:first-child');
+      const titleEl = headerCol.querySelector('h2');
+      const descEl = titleEl?.nextElementSibling?.tagName === 'P' ? titleEl.nextElementSibling : null;
+      const ctaLink = headerCol.querySelector('a');
       header = {
-        eyebrow: col1Text || null,
-        title: col2Text || null,
-        description: cols[2]?.textContent?.trim() || null,
-        cta: cols[3] ? { text: cols[3].textContent.trim().split('/')[0]?.trim(), href: cols[3].textContent.trim() } : null,
+        eyebrow: eyebrowEl && eyebrowEl !== descEl ? eyebrowEl.textContent.trim() : null,
+        title: titleEl ? titleEl.textContent.trim() : col2Text || null,
+        description: descEl ? descEl.textContent.trim() : (cols[2]?.textContent?.trim() || null),
+        cta: ctaLink ? { text: ctaLink.textContent.trim(), href: ctaLink.href } : null,
       };
-      const ctaLink = cols[3]?.querySelector('a');
-      if (ctaLink) {
-        header.cta = { text: ctaLink.textContent.trim(), href: ctaLink.href };
-      }
     } else {
       const picture = cols[0]?.querySelector('picture');
       const isVideo = col1Text.startsWith('vidyard:');
