@@ -10,6 +10,7 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 |---|---|---|---|
 | UK Homepage | https://www.gehealthcare.com/en-gb | 2026-05-14 | `site-snapshots/` |
 | Venue Fit PDP | https://www.gehealthcare.com/en-gb/products/ultrasound/point-of-care-ultrasound/venue-fit | 2026-05-14 | `site-snapshots/venue-fit/` |
+| Ultrasound DE Homepage | https://gehealthcare-ultrasound.com/de/ | 2026-05-18 | `site-snapshots/ultrasound.com/` |
 
 ---
 
@@ -18,10 +19,11 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 | Block | Status | Section(s) | Pages |
 |---|---|---|---|
 | `hero-carousel` | NEW (custom) | S1 — Hero | `/en-gb` |
+| `hero-carousel (teaser)` | EXISTING variant | S1 — Hero | `/de/` |
 | `cards (quick-links)` | EXISTING variant | S2 — Category Nav | `/en-gb` |
 | `cards (stats)` | EXISTING variant | S3 — Key Stats | `/en-gb` |
-| `cards (related-content)` | EXISTING variant | S4 — What's New; S9 — Insights | `/en-gb`, `/en-gb/...venue-fit` |
-| default content | No block needed | S5 — Contact Us | `/en-gb`, `/en-gb/...venue-fit` |
+| `cards (related-content)` | EXISTING variant | S4 — What's New; S5 — Weitere Services; S9 — Insights | `/en-gb`, `/en-gb/...venue-fit`, `/de/` |
+| default content | No block needed | S5, S7 — Contact CTA | `/en-gb`, `/en-gb/...venue-fit`, `/de/` |
 | `breadcrumb` | NEW (custom) | S1 — Breadcrumb | `/en-gb/...venue-fit` |
 | `sub-nav` | NEW (custom) | S1 — Sticky Sub-nav | `/en-gb/...venue-fit` |
 | `hero (product)` | EXISTING variant | S2 — Product Hero | `/en-gb/...venue-fit` |
@@ -32,8 +34,12 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 | `cards (feature-cards)` | EXISTING variant | S8 — Feature Cards | `/en-gb/...venue-fit` |
 | `cards (products)` | EXISTING variant | S8 — Related Products | `/en-gb/...venue-fit` |
 | `contact-form` | NEW (custom) | S10 — Contact Form | `/en-gb/...venue-fit` |
+| `teaser` | NEW (custom) | S3+S4 — Service & ViewPoint; S4 — SonoStores | `/de/` |
+| `cards (product-families)` | EXISTING variant | S2 — Product Families | `/de/` |
+| `cards (events-workshops)` | EXISTING variant | S6 — Events & Workshops | `/de/` |
 
 > `/en-gb/...venue-fit` = `/en-gb/products/ultrasound/point-of-care-ultrasound/venue-fit`
+> `/de/` = `https://gehealthcare-ultrasound.com/de/`
 
 **Status key:**
 - `NEW (custom)` — Block does not exist locally or in Block Collection; must be built from scratch
@@ -57,8 +63,8 @@ Tracks all blocks identified during migration analysis of the GE Healthcare webs
 |---|---|
 | Status | NEW (custom) |
 | Section | S1 — Hero |
-| Background | Light (white) |
-| Pages | `/en-gb` |
+| Background | Dark |
+| Pages | `/en-gb`, `/de/` |
 | Block Collection reference | [`carousel`](https://main--aem-block-collection--adobe.aem.live/block-collection/carousel) |
 
 **Content sequences:**
@@ -75,6 +81,26 @@ Each row in the block table = one slide:
 | Image | Eyebrow | Heading | CTA Label | CTA Link |
 |---|---|---|---|---|
 | hero-banner.jpg | Join us @ ECR 2026 | Our Boldest Ideas Yet | Learn more | /en-gb/ecr-2026 |
+
+**Variant: `hero-carousel (teaser)`**
+
+| Field | Value |
+|---|---|
+| Pages | `/de/` |
+| CSS class | `.hero-carousel.teaser` |
+
+Same full-bleed background image + text overlay authoring model as `hero-carousel`. The carousel interaction and behavior differ from en-gb (different slide transition, timing, or control style). Text placement, typography, and CTA styling also differ.
+
+**Dev work required:**
+Add `.hero-carousel.teaser` CSS rules to `blocks/hero-carousel/hero-carousel.css` for the `/de/` carousel behaviour and text treatment.
+
+**Sample slides on `/de/`:**
+
+| Image | Heading | Description | CTA Label | CTA Link |
+|---|---|---|---|---|
+| voluson-hero.jpg | Liebe auf den ersten Scan. | Lernen Sie die neue Voluson Performance Serie kennen. | Weitere Informationen | /de/voluson |
+| versana-hero.jpg | Du. Versana. Passt. | Entdecken Sie unsere benutzerfreundlichen Ultraschall-Komplettlösungen | Mehr erfahren | /de/versana |
+| vivid-hero.jpg | Vereinfachen Sie Ihre Arbeitsabläufe mit den Vivid™ Ultraschallsystemen | Die Vivid Ultraschallsysteme vereinen innovative Technologie... | Für eine noch bessere Patientenversorgung | /de/vivid |
 
 ---
 
@@ -654,6 +680,140 @@ The heading is default content. The block encapsulates the Marketo form configur
 | Marketo Instance ID | 413-ZSG-867                |
 | Form ID             | 1234                       |
 +---------------------+----------------------------+
+```
+
+---
+
+### `teaser`
+
+| Field | Value |
+|---|---|
+| Status | NEW (custom) |
+| Section | S3+S4 — Service & Support, ViewPoint 6; S4 — SonoStores |
+| Background | Light (white); purple (SonoStores — via section metadata) |
+| Pages | `/de/` |
+
+**Content sequences:**
+A promotional unit pairing an image with a heading, description, and CTA. Used three times on `/de/`:
+
+1. **Service & Support** — image of medical workstation + "Service & Support über die definierte Lebensdauer" + description + "Zu unseren Services"
+2. **ViewPoint 6** — image of ViewPoint software + "ViewPoint™ 6: Strukturierte Bild- & Befunddokumentation" + description + "Mehr über ViewPoint 6"
+3. **SonoStores** — image of SonoStore + "SonoStores / Ultraschallsysteme vor Ort testen" + description + "Jetzt SonoStore finden" (purple background via section metadata `style: purple`)
+
+**Why new block, not `columns`:**
+`columns` is a generic layout primitive for any side-by-side content. `teaser` is a specific semantic pattern — a promotional unit with a defined content contract (image + marketing heading + description + single CTA). Naming it `teaser` gives authors a clear, purposeful block to reach for when creating promotional content, and gives developers a scoped styling target.
+
+**Author content model:**
+Single-row block — one cell for image, one cell for text content:
+
+```
++--------------------------------------------------+
+| Teaser                                           |
++-------------------------+------------------------+
+| [workstation.jpg]       | Service & Support über die definierte Lebensdauer |
+|                         | Leistungsfähigkeit, Zuverlässigkeit und eine lange Lebensdauer... |
+|                         | [Zu unseren Services](/de/service-support) |
++-------------------------+------------------------+
+```
+
+For SonoStores (purple background), the block is unchanged — the section metadata handles the background:
+```
+style: purple
+```
+
+---
+
+### `cards (product-families)` — variant of `cards`
+
+| Field | Value |
+|---|---|
+| Status | EXISTING variant |
+| Section | S2 — Product Families |
+| Background | Light (white) |
+| Pages | `/de/` |
+| Local path | `blocks/cards/` |
+| Block Collection reference | [`cards`](https://main--aem-block-collection--adobe.aem.live/block-collection/cards) |
+
+**Content sequences:**
+- Eyebrow: "Für Klinik und Praxis"
+- Heading: "Entdecken Sie unsere spezialisierten Ultraschallsysteme"
+- Description paragraph: "Ultraschallgeräte für jeden Anwendungsbereich..."
+- 7 product family cards, each with: clinical specialty label (eyebrow), family name (heading), product family image, link:
+
+| Specialty | Family |
+|---|---|
+| Frauenheilkunde | Voluson™ Familie |
+| Kardiologie | Vivid™ Familie |
+| Interdisziplinär | LOGIQ™ Familie |
+| Intensivmedizin / Point of Care | Venue™ Familie |
+| Allrounder | Versana Familie |
+| Handultraschall | Vscan™ Air |
+| Brustultraschall | Automatisierter Brustultraschall |
+
+**Why a variant, not a new block (David's Model):**
+Each card has image + specialty label + family name + link — maps directly to `cards` rows. The 3-up grid layout and category eyebrow are CSS concerns. Differs from `cards (quick-links)` (which uses horizontal scroll) by using a standard grid — a separate CSS class handles this.
+
+**Dev work required:**
+Add `.cards.product-families` CSS rules to `blocks/cards/cards.css` for 3-up grid, specialty eyebrow typography, and family name styling.
+
+**Author content model:**
+Block header uses variant name `Cards (product-families)`. Intro content as default content above block. Each row = one product family:
+
+```
++----------------------------------------------------------+
+| Cards (product-families)                                 |
++--------------------+-------------------+-----------------+
+| [voluson-family.jpg] | Frauenheilkunde | Voluson™ Familie |
+| [vivid-family.jpg]   | Kardiologie     | Vivid™ Familie   |
+| [logiq-family.jpg]   | Interdisziplinär| LOGIQ™ Familie   |
+| [venue-family.jpg]   | Intensivmedizin | Venue™ Familie   |
+| [versana-family.jpg] | Allrounder      | Versana Familie  |
+| [vscan-family.jpg]   | Handultraschall | Vscan™ Air       |
+| [abus-family.jpg]    | Brustultraschall| Automatisierter Brustultraschall |
++--------------------+-------------------+-----------------+
+```
+
+---
+
+### `cards (events-workshops)` — variant of `cards`
+
+| Field | Value |
+|---|---|
+| Status | EXISTING variant |
+| Section | S6 — Anstehende Veranstaltungen |
+| Background | Light (white) |
+| Pages | `/de/` |
+| Local path | `blocks/cards/` |
+| Block Collection reference | [`cards`](https://main--aem-block-collection--adobe.aem.live/block-collection/cards) |
+
+**Content sequences:**
+- Section heading: "Anstehende Veranstaltungen" (default content above block)
+- 3 event items, each with: event name, date, location — no images
+- Trailing CTA: "Alle Veranstaltungen anzeigen"
+
+**Sample events on `/de/`:**
+- Post Installation Training Hamburg — 20. Mai 2026 — Hamburg
+- ÖKG Österr. Kardiologie-Kongress — 27.–30. Mai 2026 — Salzburg
+- SCR - Schweizer Radiologiekongress — 28.–30. Mai 2026 — Lausanne
+
+**Why a variant, not a new block (David's Model):**
+Three cells per row (name + date + location) maps to `cards` with no image column. The clean list-style layout without images is purely a CSS concern — `.cards.events` removes image column styling and applies a list-like presentation.
+
+**Dev work required:**
+Add `.cards.events` CSS rules to `blocks/cards/cards.css` for text-only list layout, date and location typography, and trailing CTA spacing.
+
+**Author content model:**
+Block header uses variant name `Cards (events-workshops)`. Each content row = one event or workshop; last row = trailing CTA:
+
+```
++--------------------------------------------------+
+| Cards (events)                                   |
++-----------------------------+----------+---------+
+| Post Installation Training Hamburg | 20. Mai 2026 | Hamburg |
+| ÖKG Österr. Kardiologie-Kongress | 27.–30. Mai 2026 | Salzburg |
+| SCR - Schweizer Radiologiekongress | 28.–30. Mai 2026 | Lausanne |
+| [Alle Veranstaltungen anzeigen](/de/events) | | |
++-----------------------------+----------+---------+
 ```
 
 ---
