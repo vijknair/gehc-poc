@@ -1,7 +1,6 @@
 /* carousel section container */
 .carousel-container {
   margin: 0;
-  background-color: var(--background-color);
 }
 
 .carousel-container .carousel-wrapper {
