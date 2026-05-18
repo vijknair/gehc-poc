@@ -266,13 +266,27 @@
   margin: 0;
 }
 
-/* relatedcontent eyebrow + CTA */
+/* relatedcontent header, eyebrow + title + CTA */
+.cards.relatedcontent .cards-relatedcontent-header {
+  margin-bottom: 32px;
+}
+
 .cards.relatedcontent .cards-relatedcontent-eyebrow {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
+  text-transform: uppercase;
   color: var(--text-color);
-  letter-spacing: 0.32px;
-  margin: 0 0 24px;
+  letter-spacing: 0.28px;
+  margin: 0 0 12px;
+}
+
+.cards.relatedcontent .cards-relatedcontent-title {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 48px;
+  letter-spacing: -1.25px;
+  color: var(--text-color);
+  margin: 0;
 }
 
 .cards.relatedcontent .cards-relatedcontent-cta {

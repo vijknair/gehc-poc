@@ -162,13 +162,24 @@ export default function decorate(block) {
     const lastItem = items[items.length - 1];
 
     if (firstItem && !firstItem.querySelector('picture') && !firstItem.querySelector('img')) {
-      const eyebrowText = firstItem.textContent.trim();
-      if (eyebrowText) {
+      const divs = [...firstItem.querySelectorAll('div')];
+      const texts = divs.map((d) => d.textContent.trim()).filter(Boolean);
+      const [eyebrowTxt, titleTxt] = texts;
+      const headerWrap = document.createElement('div');
+      headerWrap.className = 'cards-relatedcontent-header';
+      if (eyebrowTxt) {
         const eyebrow = document.createElement('p');
         eyebrow.className = 'cards-relatedcontent-eyebrow';
-        eyebrow.textContent = eyebrowText;
-        block.insertBefore(eyebrow, ul);
+        eyebrow.textContent = eyebrowTxt;
+        headerWrap.append(eyebrow);
       }
+      if (titleTxt) {
+        const title = document.createElement('h2');
+        title.className = 'cards-relatedcontent-title';
+        title.textContent = titleTxt;
+        headerWrap.append(title);
+      }
+      block.insertBefore(headerWrap, ul);
       firstItem.remove();
     }
 
