@@ -135,6 +135,7 @@ aem-import-helper da upload \
   --asset-list "$ASSET_LIST" \
   --da-folder "$CONTENT_DIR" \
   --output "$OUTPUT_DIR" \
+  --local-assets "$SCRIPT_DIR" \
   --keep true \
   --token "$DA_TOKEN"
 
