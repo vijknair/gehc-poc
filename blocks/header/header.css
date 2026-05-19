@@ -209,16 +209,18 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     border-top: 1px solid var(--border-color);
     box-shadow: 0 8px 24px rgb(0 0 0 / 8%);
     z-index: 10;
-    padding: 40px calc((100vw - 1056px) / 2) 48px;
     list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   header nav .nav-sections .nav-drop[aria-expanded='true'] > ul {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    min-height: 400px;
   }
 
-  /* secondary links (left panel items) */
+  /* secondary links (left white panel) */
   header nav .nav-sections .nav-drop > ul > li {
     padding: 10px 0;
     font-size: 16px;
@@ -226,6 +228,27 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     align-items: center;
     justify-content: space-between;
     list-style: none;
+    flex: 0 0 auto;
+    width: 320px;
+  }
+
+  header nav .nav-sections .nav-drop[aria-expanded='true'] > ul::before {
+    content: '';
+    flex: 0 0 calc((100vw - 1056px) / 2);
+  }
+
+  header nav .nav-sections .nav-drop[aria-expanded='true'] > ul::after {
+    content: '';
+    flex: 1;
+    background-color: var(--brand-purple-light);
+  }
+
+  header nav .nav-sections .nav-drop > ul > li:first-child {
+    padding-top: 40px;
+  }
+
+  header nav .nav-sections .nav-drop > ul > li:last-child {
+    padding-bottom: 48px;
   }
 
   header nav .nav-sections .nav-drop > ul > li a:any-link {
@@ -255,17 +278,16 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     color: var(--brand-purple);
   }
 
-  /* tertiary links (right panel) */
+  /* tertiary links (right gray panel) */
+  /* stylelint-disable-next-line no-descending-specificity */
   /* stylelint-disable-next-line no-descending-specificity */
   header nav .nav-sections .nav-category > ul {
     display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    width: 450px;
-    min-height: 100%;
+    position: fixed;
+    inset: 80px 0 auto calc((100vw - 1056px) / 2 + 320px);
+    min-height: 400px;
     background-color: var(--brand-purple-light);
-    padding: 0 0 0 42px;
+    padding: 40px 42px;
     border-left: 1px solid var(--border-color);
     list-style: none;
     margin: 0;
@@ -275,6 +297,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     display: block;
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   header nav .nav-sections .nav-category > ul > li {
     padding: 8px 0;
     list-style: none;
