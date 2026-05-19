@@ -1,5 +1,5 @@
 /* full-bleed container */
-.hero-carousel-container {
+main > .hero-carousel-container {
   margin: 0;
 }
 
@@ -126,10 +126,11 @@
   transform: rotate(180deg);
 }
 
-/* tablet: 768x304 */
+/* tablet */
 @media (width >= 768px) {
   .hero-carousel .hero-carousel-image {
-    aspect-ratio: 768 / 304;
+    aspect-ratio: unset;
+    height: 480px;
   }
 
   .hero-carousel .hero-carousel-card {
@@ -142,17 +143,11 @@
   }
 }
 
-/* desktop 1140: 1140x450 — content below image */
-@media (width >= 1140px) {
+/* desktop: fixed 760px height, card overlaid on image */
+@media (width >= 1024px) {
   .hero-carousel .hero-carousel-image {
-    aspect-ratio: 1140 / 450;
-  }
-}
-
-/* desktop 1440+: card overlaid on image */
-@media (width >= 1440px) {
-  .hero-carousel .hero-carousel-image {
-    aspect-ratio: 1920 / 760;
+    aspect-ratio: unset;
+    height: 760px;
   }
 
   .hero-carousel .hero-carousel-slide {

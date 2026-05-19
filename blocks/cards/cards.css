@@ -28,7 +28,7 @@
 }
 
 /* === QUICK-LINKS VARIANT === */
-.cards-container:has(.cards.quick-links) {
+.section:has(.cards.quick-links) {
   background-color: #f4f1f8;
   padding: 48px 0;
   margin: 0;
