@@ -8,6 +8,16 @@ helix-importer-ui
 *.bak
 .idea
 
+# Secrets
+.env
+
+# DA upload artefacts
+asset-list.json
+documents/
+
+# Scraped page snapshots (large HTML + binary images, not source code)
+site-snapshots/
+
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
